@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moor_demo/core/route_name.dart';
 import 'package:moor_demo/features/splash/splash_screen.dart';
 import 'package:moor_demo/features/users/presentation/cubit/user_cubit.dart';
 import 'package:moor_demo/features/users/work_manager_demo.dart';
@@ -31,9 +32,9 @@ Future<void> main() async {
 }
 
 Route<dynamic>? _getRoute(RouteSettings settings) {
-  if (settings.name == '/') {
+  if (settings.name == RouteName.initialRoute) {
     return _buildRoute(settings, SplashScreen());
-  } else if (settings.name == '/home') {
+  } else if (settings.name == RouteName.homePage) {
     return _buildRoute(settings, const MyHomePage());
   }
   return null;
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: '/',
+        initialRoute: RouteName.initialRoute,
         onGenerateRoute: _getRoute,
       ),
     );

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:moor_demo/main.dart';
 
+import '../../core/route_name.dart';
 import '../users/work_manager_demo.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,8 +15,10 @@ class _SplashScreen extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3),
-        () => globalNavigatorKey.currentState?.popAndPushNamed('/home'));
+    Timer(
+        const Duration(seconds: 3),
+        () => globalNavigatorKey.currentState
+            ?.popAndPushNamed(RouteName.homePage));
   }
 
   @override
