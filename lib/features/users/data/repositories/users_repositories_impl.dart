@@ -10,9 +10,9 @@ class UserRepositoryImpl extends UserRepository {
   UserRepositoryImpl(this.usersLocalSrc);
 
   @override
-  Stream<Either<Failure, List<Result>>> getUsers() async* {
+  Stream<Either<Failure, List<Result>>> getUsers(bool isBackgroundEvent) async* {
     try {
-      var response = await usersLocalSrc.getUsers();
+      var response = await usersLocalSrc.getUsers(isBackgroundEvent);
       yield Right(response);
     } catch (e, s) {
       Failure error = await checkErrorState(e, s);

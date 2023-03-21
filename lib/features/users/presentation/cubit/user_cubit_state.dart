@@ -19,11 +19,13 @@ class StateLoading extends UserCubitState {
 class FetchUserSuccessState extends UserCubitState {
   final String msg;
   final List<Result> list;
+  final bool isBackgroundEvent;
 
   @override
-  List<Object?> get props => [msg, list];
+  List<Object?> get props => [msg, list, isBackgroundEvent];
 
-  const FetchUserSuccessState({required this.msg, required this.list});
+  const FetchUserSuccessState(
+      {required this.msg, required this.list, required this.isBackgroundEvent});
 }
 
 class UserErrorState extends UserCubitState {

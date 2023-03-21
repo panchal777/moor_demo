@@ -8,13 +8,17 @@ class UserCubit extends Cubit<UserCubitState> {
 
   UserCubit({this.userCase}) : super(StateInitial());
 
-  getUsers() {
-    userCase!.callCase(NoParams()).listen((data) {
+  getUsers({bool isBackgroundEvent = false}) {
+    userCase!
+        .callCase(UserParam(isBackgroundEvent: isBackgroundEvent))
+        .listen((data) {
       data.fold((onError) {
         emit(UserErrorState(onError.toString()));
       }, (response) {
         emit(FetchUserSuccessState(
-            list: response, msg: 'List fetched'));
+            list: response,
+            msg: 'List fetched',
+            isBackgroundEvent: isBackgroundEvent));
       });
     });
   }

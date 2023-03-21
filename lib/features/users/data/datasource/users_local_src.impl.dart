@@ -14,21 +14,19 @@ class UsersLocalSrcImpl extends UsersLocalSrc {
   DemoMoorDatabase? moorDatabase;
 
   @override
-  Future<List<Result>> getUsers() async {
+  Future<List<Result>> getUsers(bool isBackgroundEvent) async {
     List<Result>? list;
     NetworkCheck networkCheck = NetworkCheck();
     bool isInternetAvailable = await networkCheck.check();
-    if (isInternetAvailable) {
-      // Save and return from Server
-      list = await getUsersFromServer().single;
-    } else {
+    if (!isInternetAvailable) {
       // Fetch from Database
       list = await getResponseFromDb();
+    } else if (isInternetAvailable || isBackgroundEvent) {
+      // Save and return from Server
+      list = await getUsersFromServer().single;
     }
-    return list;
+    return list!;
   }
-
-
 
   Future initRestClient({bool refreshToken = false}) async {
     Dio dio = Dio();
