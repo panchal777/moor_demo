@@ -16,8 +16,7 @@ void callbackDispatcher() {
         // Code to run in background
         Common.showToast(msg: 'Fetched from background');
         UsersLocalSrc usersLocalSrc = UsersLocalSrcImpl();
-        UserRepository userRepository = UserRepositoryImpl(usersLocalSrc);
-        userRepository.getUsers(true);
+        usersLocalSrc.getUsers(true);
         break;
     }
     return Future.value(true);
