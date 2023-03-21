@@ -26,22 +26,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Users'),
-      ),
-      body: Center(child: GetUserListWidget()),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Workmanager().registerPeriodicTask("1", fetchBackground,
-              //initialDelay: const Duration(seconds: 5),
-              constraints: Constraints(
-                networkType: NetworkType.connected,
-              ),
-              frequency: const Duration(seconds: 5));
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.delete),
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Users'),
+        ),
+        body: Center(child: GetUserListWidget()));
   }
 }

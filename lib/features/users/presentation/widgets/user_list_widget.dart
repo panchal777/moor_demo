@@ -14,7 +14,7 @@ class GetUserListWidget extends StatelessWidget {
     return BlocListener<UserCubit, UserCubitState>(
       listener: (context, state) {
         if (state is FetchUserSuccessState) {
-          Common.showToast(msg: state.msg);
+          //Common.showToast(msg: state.msg);
         }
       },
       child: BlocBuilder<UserCubit, UserCubitState>(builder: (context, state) {

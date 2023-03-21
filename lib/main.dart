@@ -18,6 +18,12 @@ Future<void> main() async {
   await Workmanager().initialize(
     callbackDispatcher,
   );
+  Workmanager().registerPeriodicTask("1", fetchBackground,
+      //initialDelay: const Duration(seconds: 5),
+      constraints: Constraints(
+        networkType: NetworkType.connected,
+      ),
+      frequency: const Duration(seconds: 5));
 
   runApp(const MyApp());
 }
